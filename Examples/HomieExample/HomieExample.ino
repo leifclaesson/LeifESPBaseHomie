@@ -41,6 +41,7 @@ HomieProperty * pPropQuote=NULL;
 HomieProperty * pPropColor=NULL;
 HomieProperty * pPropBacklight=NULL;
 HomieProperty * pPropTemperature=NULL;
+HomieProperty * pPropSpeed=NULL;
 
 
 //this function will be called by all the URL handlers.
@@ -172,6 +173,22 @@ void setup()
 		pProp->AddCallback([](HomieProperty * pSource)
 		{	//this lambda function gets called when we receive a message on this property's topic.
 			LeifSetInvertLedBlink(pSource->GetValue()=="true");	//controls whether the LED is normally off or normally on.
+		});
+
+
+
+		pPropSpeed=pProp=pNode->NewProperty();
+		pProp->strFriendlyName="Speed";
+		pProp->strID="speed";
+		pProp->strUnit="";
+		pProp->bRetained=true;
+		pProp->bSettable=true;
+		pProp->SetValue("OFF");
+		pProp->datatype=homieEnum;
+		pProp->strFormat="OFF,LOW,MEDIUM,HIGH";
+		pProp->AddCallback([](HomieProperty * pSource)
+		{	//this lambda function gets called when we receive a message on this property's topic.
+			csprintf("The %s is now %s\n",pSource->strFriendlyName.c_str(),pSource->GetValue().c_str());
 		});
 
 
