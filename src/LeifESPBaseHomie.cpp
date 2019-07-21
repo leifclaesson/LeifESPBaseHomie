@@ -5,12 +5,15 @@
 
 HomieDevice homie;
 
-void LeifHomieSetupDefaults()
+void LeifHomieSetupDefaults(bool bDebug)
 {
 
+	if(bDebug)
+	{
 	HomieLibRegisterDebugPrintCallback([](const char * szText){
 		csprintf("%s",szText);
 		});
+	}
 
 
 	homie.strFriendlyName=GetHeadingText();

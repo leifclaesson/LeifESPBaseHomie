@@ -5,5 +5,5 @@
 
 extern HomieDevice homie;
 
-void LeifHomieSetupDefaults();
+void LeifHomieSetupDefaults(bool bDebug=true);
 
