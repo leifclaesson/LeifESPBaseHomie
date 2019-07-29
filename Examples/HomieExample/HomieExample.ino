@@ -131,8 +131,10 @@ void setup()
 	//The LED is used for status indication. Flashes twice a second while connecting WiFi.
 	//Flashes once every two seconds when connected.
 
-	//Comment out the next line to use LED_BUILTIN. -1 to disable status LED.
-	LeifSetStatusLedPin(2);	//ESP8266 module on-board
+	//By default, LED_BUILTIN is used for status output. 2 Hz flashing while connecting to WiFi, 0.5 Hz when connected.
+	//You can use any pin by calling the LedSetStatusLedPin(x) function like below. -1 disables output altogether.
+	//LeifSetStatusLedPin(-1);	//No status LED output
+	//LeifSetStatusLedPin(1);	//ESP-01 on-board LED
 
 	LeifSetupBegin();	//starts initialization of the HTTP server and other objects.
 						//Set your serial console to 115200 bps to see console output. The console will print the IP address and many other things.
