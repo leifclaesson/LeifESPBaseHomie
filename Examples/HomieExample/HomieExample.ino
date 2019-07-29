@@ -1,7 +1,7 @@
 #include <LeifESPBaseHomie.h>
 
-// *** Don't forget to add your MQTT credentials to LeifESPBaseHomie\environment_setup.h ***
-// *** Don't forget to add your WiFi SSID/Key to LeifESPBase\environment_setup.h ***
+// *** Don't forget to add your MQTT credentials to LeifESPBaseHomie\environment_setup.h. See environment_setup.h.example for details. ***
+// *** Don't forget to add your WiFi SSID/Key to LeifESPBase\environment_setup.h See environment_setup.h.example for details. ***
 
 
 //The code keeps track of whether it's running on a production unit
