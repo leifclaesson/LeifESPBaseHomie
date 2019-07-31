@@ -304,9 +304,16 @@ void loop()
 	{
 		String strUptime;
 		LeifUptimeString(strUptime);
+
+		String strUptimeWiFi;
+		LeifSecondsToUptimeString(strUptimeWiFi,homie.GetUptimeSeconds_WiFi());
+
+		String strUptimeMQTT;
+		LeifSecondsToUptimeString(strUptimeMQTT,homie.GetUptimeSeconds_MQTT());
+
 		//print a status message to the serial console and the telnet console.
 		//you can disable the serial console by compiling with NO_SERIAL_DEBUG
-		csprintf("Uptime=%s ESP.getFreeHeap()=%u Seconds=%lu  WiFi signal: %i\n",strUptime.c_str(),ESP.getFreeHeap(),seconds(),WiFi.RSSI());
+		csprintf("Uptime=%s  WiFi=%s  MQTT=%s  HeapFree=%u  WiFi: %i\n",strUptime.c_str(),strUptimeWiFi.c_str(),strUptimeMQTT.c_str(),ESP.getFreeHeap(),WiFi.RSSI());
 
 
 		//publish something outside of the homie tree, too
