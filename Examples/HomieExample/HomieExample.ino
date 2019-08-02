@@ -141,6 +141,9 @@ void setup()
 						//Once you know the IP address you can connect to port 23 with a telnet client like PuTTY to see console output.
 						//You'll need to enable the "Implicit CR option in every LF" on the Terminal Page in PuTTY.
 
+	LeifUpdateCompileTime();	//Macro to capture __DATE__ and __TIME__ while compiling main sketch.
+								//This way compile time as displayed by the main HTTP page will accurately reflect
+								//sketch compile time, as opposed to library LeifESPBase compile time.
 
 	server.onNotFound(handleNotFound);	//serve 404
 	server.on("/", handleRoot);		//serve root page, defined above.
