@@ -52,6 +52,7 @@ void genHtmlPage(String & output, const String & strInsert)
 	output.reserve(2048);
 
 	output.concat("<!DOCTYPE html>");
+	output.concat("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
 	output.concat("<html><head><style>table, th, td {  border: 1px solid black;  border-collapse: collapse;}th, td {  padding: 5px;}</style></head>");
 	output.concat("<body>");
 	output.concat("<h2>");
