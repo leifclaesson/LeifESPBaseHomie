@@ -5,8 +5,19 @@
 
 HomieDevice homie;
 
+
+bool bLeifHomeSetupDefaults_DeferHomieID=false;
+
+bool bLeifHomieSetupDefaultsDone=false;
+
 void LeifHomieSetupDefaults(bool bDebug)
 {
+	while(bLeifHomieSetupDefaultsDone)
+	{
+		csprintf("LeifHomieSetupDefaults must be called only once\n");
+		delay(5000);
+	}
+	bLeifHomieSetupDefaultsDone=true;
 
 	if(bDebug)
 	{
@@ -16,8 +27,11 @@ void LeifHomieSetupDefaults(bool bDebug)
 	}
 
 
-	homie.strFriendlyName=GetHeadingText();
-	homie.strID=HomieDeviceName(GetHostName());
+	if(!bLeifHomeSetupDefaults_DeferHomieID)
+	{
+		homie.strFriendlyName=GetHeadingText();
+		homie.strID=HomieDeviceName(GetHostName());
+	}
 
 	homie.strMqttServerIP=mqtt_server;
 	homie.strMqttUserName=mqtt_user;
