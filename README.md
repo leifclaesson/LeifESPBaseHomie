@@ -17,8 +17,7 @@ Enter your MQTT credentials to `LeifESPBaseHomie\environment_setup.h`
 
 [LeifESPBase](https://github.com/liket/LeifESPBase)
 [LeifHomieLib](https://github.com/liket/LeifHomieLib)
-[AsyncMqttClient](https://github.com/marvinroger/async-mqtt-client)
-[ESPAsyncTCP](https://github.com/me-no-dev/ESPAsyncTCP)
+[PangolinMQTT](https://github.com/leifclaesson/PangolinMQTT)
 
 ## dependencies (ESP32)
 
