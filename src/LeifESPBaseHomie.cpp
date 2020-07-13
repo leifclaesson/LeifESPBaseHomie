@@ -6,7 +6,7 @@
 HomieDevice homie;
 
 
-bool bLeifHomeSetupDefaults_DeferHomieID=false;
+bool bLeifHomieSetupDefaults_DeferHomieID=false;
 
 bool bLeifHomieSetupDefaultsDone=false;
 
@@ -27,7 +27,7 @@ void LeifHomieSetupDefaults(bool bDebug)
 	}
 
 
-	if(!bLeifHomeSetupDefaults_DeferHomieID)
+	if(!bLeifHomieSetupDefaults_DeferHomieID)
 	{
 		homie.strFriendlyName=GetHeadingText();
 		homie.strID=HomieDeviceName(GetHostName());
