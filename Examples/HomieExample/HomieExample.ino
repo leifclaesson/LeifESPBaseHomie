@@ -67,6 +67,7 @@ void genHtmlPage(String & output, const String & strInsert)
 	output.concat("<td><a href=\"/ping\">Minimal test page</a></td>");
 	output.concat("<td><a href=\"/sysinfo\">System Info</a></td>");
 	output.concat("<td><a href=\"/invert\">Invert status LED</a></td>");
+	output.concat("<td><a href=\"/restart\">Restart</a></td>");
 	output.concat("</tr></table>");
 
 	output.concat(strInsert);
@@ -151,6 +152,14 @@ void setup()
 
 	//define your own URL handlers here.
 	server.on("/invert", handleInvert);		//invert the LED flashing pattern.
+
+	server.on("/restart", []()
+		{
+			handleRoot();
+			delay(500);
+			ESP.restart();
+		}
+	);		//invert the LED flashing pattern.
 
 	LeifHomieSetupDefaults();
 
