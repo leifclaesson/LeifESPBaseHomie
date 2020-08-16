@@ -4,34 +4,21 @@
 // *** Don't forget to add your WiFi SSID/Key to LeifESPBase\environment_setup.h See environment_setup.h.example for details. ***
 
 
-//The code keeps track of whether it's running on a production unit
-//(let's say inside a ceiling-mounted box, inconvenient to get to)
-//or a development board on your bench, by way of checking the MAC address.
+//This host name will be used for the HTTP server and the Homie topic.
+//We will update it in the setup function, based on the MAC address.
 
-//This reduces confusion while bench-testing new code before OTA upload to the production unit.
-//The bDeployedUnit flag is set at the beginning of the setup() function below.
+const char * szHostName="HomieExampleMCU-dev";
+const char * szFriendlyName="Homie Example MCU (dev)";
 
-bool bDeployedUnit=false;
 
 const char * GetHostName()	//this host name will reported to for example mDNS, telnet
 {
-	if(bDeployedUnit)
-	{
-		return "HomieExampleMCU";
-	}
-	return "HomieExampleMCU-dev";
+	return szHostName;
 }
 
 const char * GetHeadingText()	//friendly system name, used for example for the HTTP page
 {
-	if(bDeployedUnit)
-	{
-		return "Homie Example MCU";
-	}
-	else
-	{
-		return "Homie Example MCU dev";
-	}
+	return szFriendlyName;
 }
 
 
@@ -42,6 +29,7 @@ HomieProperty * pPropColor=NULL;
 HomieProperty * pPropBacklight=NULL;
 HomieProperty * pPropTemperature=NULL;
 HomieProperty * pPropSpeed=NULL;
+HomieProperty * pPropStandardMQTT=NULL;
 
 
 //this function will be called by all the URL handlers.
@@ -127,8 +115,17 @@ void handleNotFound()
 
 void setup()
 {
-	//MAC address of your deployed (production) unit
-	if(WiFi.macAddress()=="BC:DD:C2:23:68:54") bDeployedUnit=true;
+
+	//We can use the MAC address to select between hardcoded configurations.
+	//This greatly reduces the risk of mistakes.
+	//We can for example have separate host names for a unit on the bench compared to a deployed unit,
+	//which may be in a difficult to access location. This way you know'll know which unit you're communicating with.
+
+	if(WiFi.macAddress()=="BC:DD:C2:23:68:54")
+	{
+		szHostName="HomieExampleMCU";
+		szFriendlyName="Homie Example MCU";
+	}
 
 	//The LED is used for status indication. Flashes twice a second while connecting WiFi.
 	//Flashes once every two seconds when connected.
@@ -171,6 +168,14 @@ void setup()
 
 		HomieProperty * pProp=NULL;
 
+		pPropStandardMQTT=pProp=pNode->NewProperty();
+		pProp->strFriendlyName="Standard MQTT item";
+		pProp->strID="standard_mqtt_item";
+		pProp->SetStandardMQTT("some/topic");
+		pProp->AddCallback([](HomieProperty * pSource)
+		{	//this lambda function gets called when we receive a message on this property's topic.
+			csprintf("%s is now %s\n",pSource->strFriendlyName.c_str(),pSource->GetValue().c_str());
+		});
 
 
 		// This parameter is fully functional. It controls whether the status LED is normally on or normally off.
@@ -272,6 +277,7 @@ void setup()
 
 
 	}
+
 
 
 
