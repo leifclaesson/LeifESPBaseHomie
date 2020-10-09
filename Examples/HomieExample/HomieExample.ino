@@ -185,9 +185,9 @@ void setup()
 		pPropLedInvert=pProp=pNode->NewProperty();
 		pProp->strFriendlyName="Invert Status LED";
 		pProp->strID="invertled";
-		pProp->strUnit="";
-		pProp->bRetained=true;
-		pProp->bSettable=true;
+		pProp->SetUnit("");
+		pProp->SetRetained(true);
+		pProp->SetSettable(true);
 		pProp->datatype=homieBool;
 		pProp->SetBool(LeifGetInvertLedBlink());	//Set the initial value. It'll get published if there is no retained value.
 		pProp->AddCallback([](HomieProperty * pSource)
@@ -200,9 +200,9 @@ void setup()
 		pPropSpeed=pProp=pNode->NewProperty();
 		pProp->strFriendlyName="Speed";
 		pProp->strID="speed";
-		pProp->strUnit="";
-		pProp->bRetained=true;
-		pProp->bSettable=true;
+		pProp->SetUnit("");
+		pProp->SetRetained(true);
+		pProp->SetSettable(true);
 		pProp->SetValue("OFF");
 		pProp->datatype=homieEnum;
 		pProp->strFormat="OFF,LOW,MEDIUM,HIGH";
@@ -219,9 +219,9 @@ void setup()
 		pPropQuote=pProp=pNode->NewProperty();
 		pProp->strID="quote";
 		pProp->datatype=homieString;
-		pProp->bRetained=false;
+		pProp->SetRetained(false);
 		pProp->strFriendlyName="Quote Generator";
-		pProp->bPublishEmptyString=false;
+		pProp->SetPublishEmptyString(false);
 
 
 
@@ -231,8 +231,8 @@ void setup()
 		pPropColor=pProp=pNode->NewProperty();
 		pProp->strID="color";
 		pProp->datatype=homieColor;
-		pProp->bRetained=true;
-		pProp->bSettable=true;
+		pProp->SetRetained(true);
+		pProp->SetSettable(true);
 		pProp->strFriendlyName="Color Selector";
 		pProp->strFormat="hsv";
 		pProp->SetValue("60,100,100");	//default bright yellow
@@ -250,8 +250,8 @@ void setup()
 		pPropBacklight=pProp=pNode->NewProperty();
 		pProp->strID="dimmer";
 		pProp->datatype=homieFloat;
-		pProp->bRetained=true;
-		pProp->bSettable=true;
+		pProp->SetRetained(true);
+		pProp->SetSettable(true);
 		pProp->strFriendlyName="Dimmer";
 		pProp->strFormat="0:1";
 		pProp->SetValue("0.5");	//default value
@@ -264,8 +264,8 @@ void setup()
 		pPropTemperature=pProp=pNode->NewProperty();
 		pProp->strID="temp_setpoint";
 		pProp->datatype=homieInt;
-		pProp->bRetained=true;
-		pProp->bSettable=true;
+		pProp->SetRetained(true);
+		pProp->SetSettable(true);
 		pProp->strFriendlyName="Temperature (setpoint)";
 		pProp->strFormat="16:32";
 		pProp->SetValue("27.0");	//default value
