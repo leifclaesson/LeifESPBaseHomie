@@ -66,3 +66,10 @@ void LeifPublishMQTT(const char* topic, const char* payload, bool retain)
 		csprintf("MQTT not connected, can't publish [%s]: %s\n",strTopic.c_str(),payload);
 	}
 }
+
+
+void LeifEnableMQTT(bool bEnable)
+{
+	homie.SetEnableMQTT(bEnable);
+}
+
