@@ -10,6 +10,7 @@ bool bLeifHomieSetupDefaults_DeferHomieID=false;
 
 bool bLeifHomieSetupDefaultsDone=false;
 
+
 void LeifHomieSetupDefaults(bool bDebug)
 {
 	while(bLeifHomieSetupDefaultsDone)
@@ -38,12 +39,13 @@ void LeifHomieSetupDefaults(bool bDebug)
 	homie.strMqttPassword=mqtt_password;
 
 
-
 	LeifRegisterOnShutdownCallback([](const char * pszReason){
 		if(pszReason) {}
 		homie.Quit();
 		});
 
+	extern const uint32_t * pMqttUptime;
+	pMqttUptime=homie.GetUptimeSecondsPtr_MQTT();
 
 }
 
