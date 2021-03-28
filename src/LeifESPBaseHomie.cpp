@@ -47,6 +47,10 @@ void LeifHomieSetupDefaults(bool bDebug)
 	extern const uint32_t * pMqttUptime;
 	pMqttUptime=homie.GetUptimeSecondsPtr_MQTT();
 
+	extern const char * pMqttLibrary;
+	pMqttLibrary=homie.GetMqttLibraryID();
+
+
 }
 
 void LeifPublishMQTT(const char* topic, const char* payload, bool retain)

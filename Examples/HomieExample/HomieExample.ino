@@ -8,7 +8,7 @@
 //We will update it in the setup function, based on the MAC address.
 
 const char * szHostName="HomieExampleMCU-dev";
-const char * szFriendlyName="Homie Example MCU (dev)";
+const char * szHeadingText="Homie Example MCU (dev)";
 
 
 const char * GetHostName()	//this host name will reported to for example mDNS, telnet
@@ -18,7 +18,7 @@ const char * GetHostName()	//this host name will reported to for example mDNS, t
 
 const char * GetHeadingText()	//friendly system name, used for example for the HTTP page
 {
-	return szFriendlyName;
+	return szHeadingText;
 }
 
 
