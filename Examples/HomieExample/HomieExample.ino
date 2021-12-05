@@ -140,8 +140,6 @@ void handleNotFound()
 }
 
 
-uint32_t ulRestartTimestamp=0;
-
 
 void setup()
 {
@@ -185,10 +183,9 @@ void setup()
 	server.on("/restart", []()
 		{
 			handleRoot();
-			ulRestartTimestamp=millis()+1000;
-
+			LeifScheduleRestart(1000);
 		}
-	);		//invert the LED flashing pattern.
+	);
 
 	LeifHomieSetupDefaults();
 
@@ -326,13 +323,6 @@ void loop()
 	LeifLoop();
 
 	homie.Loop();
-
-	if(ulRestartTimestamp && (int32_t) (millis()-ulRestartTimestamp)>0)
-	{
-		ulRestartTimestamp=0;
-		ESP.restart();
-	}
-
 
 	//Automatically reboot if we're unable to ping the gateway for 5 minutes. ESP8266 only for now!
 	//LeifGatewayKeepalive();	//uncomment if desired
