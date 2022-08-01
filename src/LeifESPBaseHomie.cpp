@@ -79,3 +79,8 @@ void LeifEnableMQTT(bool bEnable)
 	homie.SetEnableMQTT(bEnable);
 }
 
+HomieProperty * NewSubscription(const String & strTopic)
+{
+	return homie.NewSubscription(strTopic);
+}
+
