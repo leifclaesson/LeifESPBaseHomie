@@ -1,6 +1,11 @@
 #pragma once
 
+#ifdef NO_DEFAULT_WIFI
+const char * mqtt_server = "";
+const char * mqtt_user = "";
+const char * mqtt_password = "";
+#else
 const char * mqtt_server = "192.168.1.100";
 const char * mqtt_user = "openhabian";
 const char * mqtt_password = "secret";
-
+#endif
